@@ -1,0 +1,1310 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Skilled Workers Connect
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+ </head>
+ <body class="bg-gray-50 min-h-screen flex flex-col">
+  <!-- Header / Navbar -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+    <a class="text-2xl font-bold text-indigo-600 flex items-center space-x-2" href="#">
+     <img alt="Skilled Workers Connect logo, blue and white icon representing tools" class="rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/a14fed7a-a2be-4ee9-2d6b-fe9ae244cc28.jpg" width="40"/>
+     <span>
+      Skilled Workers Connect
+     </span>
+    </a>
+    <nav class="hidden md:flex space-x-6 text-gray-700 font-semibold">
+     <a class="hover:text-indigo-600 transition" href="#search">
+      Find Workers
+     </a>
+     <a class="hover:text-indigo-600 transition" href="#worker-signup">
+      Worker Signup
+     </a>
+     <a class="hover:text-indigo-600 transition" href="#customer-login">
+      Customer Login
+     </a>
+     <a class="hover:text-indigo-600 transition" href="#admin-dashboard">
+      Admin
+     </a>
+    </nav>
+    <div class="md:hidden">
+     <button aria-label="Open menu" class="text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-600" id="mobile-menu-button">
+      <i class="fas fa-bars fa-lg">
+      </i>
+     </button>
+    </div>
+   </div>
+   <!-- Mobile Menu -->
+   <div class="hidden md:hidden bg-white shadow-md" id="mobile-menu">
+    <a class="block px-4 py-3 border-b border-gray-200 hover:bg-indigo-50" href="#search">
+     Find Workers
+    </a>
+    <a class="block px-4 py-3 border-b border-gray-200 hover:bg-indigo-50" href="#worker-signup">
+     Worker Signup
+    </a>
+    <a class="block px-4 py-3 border-b border-gray-200 hover:bg-indigo-50" href="#customer-login">
+     Customer Login
+    </a>
+    <a class="block px-4 py-3 hover:bg-indigo-50" href="#admin-dashboard">
+     Admin
+    </a>
+   </div>
+  </header>
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+   <!-- Authentication Section -->
+   <section class="bg-white rounded-lg shadow p-8 max-w-3xl mx-auto" id="worker-signup">
+    <h2 class="text-3xl font-semibold text-indigo-700 mb-6 text-center">
+     Worker Signup / Login
+    </h2>
+    <form autocomplete="off" class="space-y-6" id="worker-auth-form" novalidate="">
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="worker-phone">
+       Phone Number (with OTP login)
+      </label>
+      <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="worker-phone" name="worker-phone" placeholder="+91 98765 43210" required="" type="tel"/>
+     </div>
+     <div>
+      <button class="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold hover:bg-indigo-700 transition" id="send-worker-otp" type="button">
+       Send OTP
+      </button>
+     </div>
+     <div class="hidden space-y-4" id="worker-otp-section">
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="worker-otp">
+        Enter OTP
+       </label>
+       <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="worker-otp" maxlength="6" name="worker-otp" placeholder="6-digit OTP" type="text"/>
+      </div>
+      <div>
+       <button class="w-full bg-green-600 text-white py-2 rounded-md font-semibold hover:bg-green-700 transition" id="verify-worker-otp" type="button">
+        Verify OTP &amp; Continue
+       </button>
+      </div>
+     </div>
+     <div class="hidden space-y-6" id="worker-profile-section">
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="worker-photo">
+        Profile Photo
+       </label>
+       <input accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" id="worker-photo" name="worker-photo" required="" type="file"/>
+      </div>
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="worker-fullname">
+        Full Name
+       </label>
+       <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="worker-fullname" name="worker-fullname" placeholder="John Doe" required="" type="text"/>
+      </div>
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="worker-skill">
+        Skill Category
+       </label>
+       <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="worker-skill" name="worker-skill" required="">
+        <option value="">
+         Select Skill
+        </option>
+        <option value="plumber">
+         Plumber
+        </option>
+        <option value="electrician">
+         Electrician
+        </option>
+        <option value="carpenter">
+         Carpenter
+        </option>
+        <option value="builder">
+         Builder
+        </option>
+        <option value="painter">
+         Painter
+        </option>
+        <option value="mason">
+         Mason
+        </option>
+        <option value="welder">
+         Welder
+        </option>
+        <option value="gardener">
+         Gardener
+        </option>
+       </select>
+      </div>
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="worker-district">
+        District
+       </label>
+       <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="worker-district" name="worker-district" placeholder="District name" required="" type="text"/>
+      </div>
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="worker-village">
+        Village
+       </label>
+       <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="worker-village" name="worker-village" placeholder="Village name" required="" type="text"/>
+      </div>
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="worker-experience">
+        Work Experience (years)
+       </label>
+       <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="worker-experience" max="50" min="0" name="worker-experience" placeholder="e.g. 5" required="" type="number"/>
+      </div>
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="worker-availability">
+        Availability
+       </label>
+       <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="worker-availability" name="worker-availability" required="">
+        <option value="">
+         Select Availability
+        </option>
+        <option value="full-time">
+         Full Time
+        </option>
+        <option value="part-time">
+         Part Time
+        </option>
+        <option value="weekends">
+         Weekends
+        </option>
+        <option value="on-call">
+         On Call
+        </option>
+       </select>
+      </div>
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="worker-address">
+        Address
+       </label>
+       <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 resize-none" id="worker-address" name="worker-address" placeholder="Full address" required="" rows="2"></textarea>
+      </div>
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="worker-aadhaar">
+        Aadhaar Number (Optional)
+       </label>
+       <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="worker-aadhaar" name="worker-aadhaar" pattern="\d{4}-\d{4}-\d{4}" placeholder="XXXX-XXXX-XXXX" type="text"/>
+      </div>
+      <div>
+       <button class="w-full bg-indigo-600 text-white py-3 rounded-md font-semibold hover:bg-indigo-700 transition" type="submit">
+        Complete Registration
+       </button>
+      </div>
+     </div>
+    </form>
+   </section>
+   <section class="bg-white rounded-lg shadow p-8 max-w-3xl mx-auto" id="customer-login">
+    <h2 class="text-3xl font-semibold text-indigo-700 mb-6 text-center">
+     Customer Login
+    </h2>
+    <div class="flex flex-col space-y-6 max-w-md mx-auto">
+     <button class="flex items-center justify-center space-x-3 border border-gray-300 rounded-md py-3 px-4 hover:bg-gray-100 transition" id="google-login-btn">
+      <img alt="Google logo, multicolor G letter" class="w-6 h-6" height="24" src="https://storage.googleapis.com/a1aa/image/8947264e-fcf3-46e7-35b5-3eeb4c88a9c9.jpg" width="24"/>
+      <span class="font-semibold text-gray-700">
+       Login with Google
+      </span>
+     </button>
+     <form autocomplete="off" class="space-y-4" id="customer-phone-login-form" novalidate="">
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="customer-phone">
+        Phone Number (with OTP login)
+       </label>
+       <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="customer-phone" name="customer-phone" placeholder="+91 98765 43210" required="" type="tel"/>
+      </div>
+      <div>
+       <button class="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold hover:bg-indigo-700 transition" id="send-customer-otp" type="button">
+        Send OTP
+       </button>
+      </div>
+      <div class="hidden space-y-4" id="customer-otp-section">
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="customer-otp">
+         Enter OTP
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="customer-otp" maxlength="6" name="customer-otp" placeholder="6-digit OTP" type="text"/>
+       </div>
+       <div>
+        <button class="w-full bg-green-600 text-white py-2 rounded-md font-semibold hover:bg-green-700 transition" id="verify-customer-otp" type="button">
+         Verify OTP &amp; Login
+        </button>
+       </div>
+      </div>
+     </form>
+    </div>
+   </section>
+   <!-- Search & Filter Section -->
+   <section class="bg-white rounded-lg shadow p-8 max-w-5xl mx-auto" id="search">
+    <h2 class="text-3xl font-semibold text-indigo-700 mb-6 text-center">
+     Find Skilled Workers
+    </h2>
+    <form autocomplete="off" class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8" id="search-form" novalidate="">
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="search-district">
+       District
+      </label>
+      <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="search-district" name="search-district" placeholder="Enter district" type="text"/>
+     </div>
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="search-village">
+       Village
+      </label>
+      <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="search-village" name="search-village" placeholder="Enter village" type="text"/>
+     </div>
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="search-skill">
+       Skill
+      </label>
+      <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="search-skill" name="search-skill">
+       <option value="">
+        All Skills
+       </option>
+       <option value="plumber">
+        Plumber
+       </option>
+       <option value="electrician">
+        Electrician
+       </option>
+       <option value="carpenter">
+        Carpenter
+       </option>
+       <option value="builder">
+        Builder
+       </option>
+       <option value="painter">
+        Painter
+       </option>
+       <option value="mason">
+        Mason
+       </option>
+       <option value="welder">
+        Welder
+       </option>
+       <option value="gardener">
+        Gardener
+       </option>
+      </select>
+     </div>
+     <div class="flex items-end space-x-4">
+      <button class="w-full bg-indigo-600 text-white py-3 rounded-md font-semibold hover:bg-indigo-700 transition" type="submit">
+       Search
+      </button>
+      <button class="bg-green-600 text-white py-3 px-4 rounded-md font-semibold hover:bg-green-700 transition flex items-center space-x-2" id="near-me-btn" type="button">
+       <i class="fas fa-location-arrow">
+       </i>
+       <span>
+        Near Me
+       </span>
+      </button>
+     </div>
+    </form>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="workers-list">
+     <!-- Worker cards will be dynamically inserted here -->
+    </div>
+   </section>
+   <!-- Worker Profile Modal -->
+   <div aria-describedby="worker-profile-desc" aria-labelledby="worker-profile-title" aria-modal="true" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50" id="worker-profile-modal" role="dialog">
+    <div class="bg-white rounded-lg shadow-lg max-w-xl w-full max-h-[90vh] overflow-y-auto p-6 relative">
+     <button aria-label="Close worker profile" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 rounded" id="worker-profile-close">
+      <i class="fas fa-times fa-lg">
+      </i>
+     </button>
+     <div class="space-y-4" id="worker-profile-content">
+      <!-- Dynamic content -->
+     </div>
+    </div>
+   </div>
+   <!-- Job Request Section -->
+   <section class="bg-white rounded-lg shadow p-8 max-w-3xl mx-auto" id="job-request">
+    <h2 class="text-3xl font-semibold text-indigo-700 mb-6 text-center">
+     Post a Job Request
+    </h2>
+    <form autocomplete="off" class="space-y-6" id="job-request-form" novalidate="">
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="job-skill">
+       Required Skill
+      </label>
+      <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="job-skill" name="job-skill" required="">
+       <option value="">
+        Select Skill
+       </option>
+       <option value="plumber">
+        Plumber
+       </option>
+       <option value="electrician">
+        Electrician
+       </option>
+       <option value="carpenter">
+        Carpenter
+       </option>
+       <option value="builder">
+        Builder
+       </option>
+       <option value="painter">
+        Painter
+       </option>
+       <option value="mason">
+        Mason
+       </option>
+       <option value="welder">
+        Welder
+       </option>
+       <option value="gardener">
+        Gardener
+       </option>
+      </select>
+     </div>
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="job-district">
+       District
+      </label>
+      <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="job-district" name="job-district" placeholder="Enter district" required="" type="text"/>
+     </div>
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="job-village">
+       Village
+      </label>
+      <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="job-village" name="job-village" placeholder="Enter village" required="" type="text"/>
+     </div>
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="job-description">
+       Job Description
+      </label>
+      <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 resize-none" id="job-description" name="job-description" placeholder="Describe the job requirements" required="" rows="3"></textarea>
+     </div>
+     <div>
+      <button class="w-full bg-green-600 text-white py-3 rounded-md font-semibold hover:bg-green-700 transition" type="submit">
+       Post Job Request
+      </button>
+     </div>
+    </form>
+   </section>
+   <!-- Admin Dashboard Section -->
+   <section class="bg-white rounded-lg shadow p-8 max-w-7xl mx-auto" id="admin-dashboard">
+    <h2 class="text-3xl font-semibold text-indigo-700 mb-6 text-center">
+     Admin Dashboard
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+     <div class="bg-indigo-50 rounded-lg p-6 shadow">
+      <h3 class="text-xl font-semibold text-indigo-700 mb-4">
+       Workers by Skill
+      </h3>
+      <ul class="space-y-2 text-gray-700" id="admin-workers-by-skill">
+       <li>
+        Plumber: 0
+       </li>
+       <li>
+        Electrician: 0
+       </li>
+       <li>
+        Carpenter: 0
+       </li>
+       <li>
+        Builder: 0
+       </li>
+       <li>
+        Painter: 0
+       </li>
+       <li>
+        Mason: 0
+       </li>
+       <li>
+        Welder: 0
+       </li>
+       <li>
+        Gardener: 0
+       </li>
+      </ul>
+     </div>
+     <div class="bg-indigo-50 rounded-lg p-6 shadow">
+      <h3 class="text-xl font-semibold text-indigo-700 mb-4">
+       Workers by District
+      </h3>
+      <ul class="space-y-2 text-gray-700 max-h-48 overflow-y-auto" id="admin-workers-by-district">
+       <li>
+        District 1: 0
+       </li>
+       <li>
+        District 2: 0
+       </li>
+       <li>
+        District 3: 0
+       </li>
+       <li>
+        District 4: 0
+       </li>
+       <li>
+        District 5: 0
+       </li>
+      </ul>
+     </div>
+     <div class="bg-indigo-50 rounded-lg p-6 shadow">
+      <h3 class="text-xl font-semibold text-indigo-700 mb-4">
+       Analytics
+      </h3>
+      <ul class="space-y-2 text-gray-700" id="admin-analytics">
+       <li>
+        Total Logins Today: 0
+       </li>
+       <li>
+        Most Searched Skill: None
+       </li>
+       <li>
+        Active Districts: 0
+       </li>
+      </ul>
+     </div>
+    </div>
+    <div>
+     <h3 class="text-xl font-semibold text-indigo-700 mb-4">
+      Pending Worker Approvals
+     </h3>
+     <div class="space-y-4 max-h-96 overflow-y-auto" id="admin-pending-workers">
+      <!-- Pending workers cards -->
+     </div>
+    </div>
+    <div class="mt-10">
+     <h3 class="text-xl font-semibold text-indigo-700 mb-4">
+      Reported Profiles
+     </h3>
+     <div class="space-y-4 max-h-96 overflow-y-auto" id="admin-reported-profiles">
+      <!-- Reported profiles cards -->
+     </div>
+    </div>
+   </section>
+   <!-- Chatbot Widget -->
+   <div aria-atomic="true" aria-live="polite" class="fixed bottom-6 right-6 w-80 max-w-full bg-white rounded-lg shadow-lg flex flex-col overflow-hidden z-50" id="chatbot-widget">
+    <div aria-controls="chatbot-body" aria-expanded="false" class="bg-indigo-600 text-white px-4 py-3 flex justify-between items-center cursor-pointer" id="chatbot-header" role="button" tabindex="0">
+     <span class="font-semibold">
+      Help Chatbot
+     </span>
+     <i class="fas fa-comment-alt fa-lg">
+     </i>
+    </div>
+    <div class="hidden flex flex-col h-96" id="chatbot-body">
+     <div class="flex-grow p-4 overflow-y-auto space-y-3 text-gray-800 bg-indigo-50" id="chatbot-messages">
+     </div>
+     <form class="flex border-t border-indigo-300" id="chatbot-form">
+      <input aria-label="Type your message" autocomplete="off" class="flex-grow px-4 py-2 focus:outline-none" id="chatbot-input" placeholder="Ask me anything..." required="" type="text"/>
+      <button class="bg-indigo-600 text-white px-4 py-2 hover:bg-indigo-700 transition" type="submit">
+       <i class="fas fa-paper-plane">
+       </i>
+      </button>
+     </form>
+    </div>
+   </div>
+  </main>
+  <footer class="bg-white border-t border-gray-200 py-6 mt-auto">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+    © 2024 Skilled Workers Connect. All rights reserved.
+   </div>
+  </footer>
+  <script>
+   // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Worker Auth Flow (Mocked)
+    const sendWorkerOtpBtn = document.getElementById('send-worker-otp');
+    const workerOtpSection = document.getElementById('worker-otp-section');
+    const verifyWorkerOtpBtn = document.getElementById('verify-worker-otp');
+    const workerProfileSection = document.getElementById('worker-profile-section');
+    const workerAuthForm = document.getElementById('worker-auth-form');
+
+    sendWorkerOtpBtn.addEventListener('click', () => {
+      const phone = document.getElementById('worker-phone').value.trim();
+      if (!phone.match(/^\+?\d{10,15}$/)) {
+        alert('Please enter a valid phone number with country code.');
+        return;
+      }
+      alert('OTP sent to ' + phone + ' (mock)');
+      workerOtpSection.classList.remove('hidden');
+    });
+
+    verifyWorkerOtpBtn.addEventListener('click', () => {
+      const otp = document.getElementById('worker-otp').value.trim();
+      if (otp.length !== 6 || !/^\d{6}$/.test(otp)) {
+        alert('Please enter a valid 6-digit OTP.');
+        return;
+      }
+      alert('OTP verified (mock)');
+      workerProfileSection.classList.remove('hidden');
+      workerOtpSection.classList.add('hidden');
+      sendWorkerOtpBtn.disabled = true;
+      verifyWorkerOtpBtn.disabled = true;
+      document.getElementById('worker-phone').disabled = true;
+    });
+
+    workerAuthForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Here you would send the worker profile data to backend
+      alert('Worker registration submitted (mock). You will be notified after admin approval.');
+      workerAuthForm.reset();
+      workerProfileSection.classList.add('hidden');
+      sendWorkerOtpBtn.disabled = false;
+      verifyWorkerOtpBtn.disabled = false;
+      document.getElementById('worker-phone').disabled = false;
+    });
+
+    // Customer Login Flow (Mocked)
+    const sendCustomerOtpBtn = document.getElementById('send-customer-otp');
+    const customerOtpSection = document.getElementById('customer-otp-section');
+    const verifyCustomerOtpBtn = document.getElementById('verify-customer-otp');
+    const customerPhoneInput = document.getElementById('customer-phone');
+
+    sendCustomerOtpBtn.addEventListener('click', () => {
+      const phone = customerPhoneInput.value.trim();
+      if (!phone.match(/^\+?\d{10,15}$/)) {
+        alert('Please enter a valid phone number with country code.');
+        return;
+      }
+      alert('OTP sent to ' + phone + ' (mock)');
+      customerOtpSection.classList.remove('hidden');
+    });
+
+    verifyCustomerOtpBtn.addEventListener('click', () => {
+      const otp = document.getElementById('customer-otp').value.trim();
+      if (otp.length !== 6 || !/^\d{6}$/.test(otp)) {
+        alert('Please enter a valid 6-digit OTP.');
+        return;
+      }
+      alert('Customer logged in (mock)');
+      customerOtpSection.classList.add('hidden');
+      sendCustomerOtpBtn.disabled = true;
+      verifyCustomerOtpBtn.disabled = true;
+      customerPhoneInput.disabled = true;
+    });
+
+    // Google Login Button (Mock)
+    const googleLoginBtn = document.getElementById('google-login-btn');
+    googleLoginBtn.addEventListener('click', () => {
+      alert('Google login flow (mock)');
+    });
+
+    // Worker Data (Mocked sample data)
+    const workersData = [
+      {
+        id: 'w1',
+        photo: 'https://placehold.co/150x150/png?text=Plumber+Photo',
+        name: 'Ravi Kumar',
+        skill: 'plumber',
+        phone: '+917659921055',
+        address: 'Village A, District X',
+        district: 'District X',
+        village: 'Village A',
+        rating: 4.5,
+        reviews: [
+          { customer: 'Sita', rating: 5, comment: 'Excellent work!' },
+          { customer: 'Ram', rating: 4, comment: 'Good and punctual.' },
+        ],
+        location: { lat: 17.385044, lng: 78.486671 },
+        approved: true,
+      },
+      {
+        id: 'w2',
+        photo: 'https://placehold.co/150x150/png?text=Electrician+Photo',
+        name: 'Anita Sharma',
+        skill: 'electrician',
+        phone: '+917659921055',
+        address: 'Village B, District Y',
+        district: 'District Y',
+        village: 'Village B',
+        rating: 4.8,
+        reviews: [
+          { customer: 'Kiran', rating: 5, comment: 'Very professional.' },
+          { customer: 'Neha', rating: 4.5, comment: 'Quick response.' },
+        ],
+        location: { lat: 17.4500, lng: 78.3800 },
+        approved: true,
+      },
+      {
+        id: 'w3',
+        photo: 'https://placehold.co/150x150/png?text=Carpenter+Photo',
+        name: 'Suresh Patel',
+        skill: 'carpenter',
+        phone: '+917659921055',
+        address: 'Village C, District X',
+        district: 'District X',
+        village: 'Village C',
+        rating: 4.2,
+        reviews: [
+          { customer: 'Meena', rating: 4, comment: 'Good craftsmanship.' },
+          { customer: 'Ajay', rating: 4.5, comment: 'Reliable and skilled.' },
+        ],
+        location: { lat: 17.4000, lng: 78.5000 },
+        approved: true,
+      },
+      {
+        id: 'w4',
+        photo: 'https://placehold.co/150x150/png?text=Builder+Photo',
+        name: 'Rajesh Singh',
+        skill: 'builder',
+        phone: '+917659921055',
+        address: 'Village D, District Z',
+        district: 'District Z',
+        village: 'Village D',
+        rating: 4.7,
+        reviews: [
+          { customer: 'Sunita', rating: 5, comment: 'Excellent builder.' },
+          { customer: 'Vikram', rating: 4.5, comment: 'On time and budget.' },
+        ],
+        location: { lat: 17.3000, lng: 78.6000 },
+        approved: true,
+      },
+      {
+        id: 'w5',
+        photo: 'https://placehold.co/150x150/png?text=Painter+Photo',
+        name: 'Lakshmi Devi',
+        skill: 'painter',
+        phone: '+917659921055',
+        address: 'Village E, District Y',
+        district: 'District Y',
+        village: 'Village E',
+        rating: 4.3,
+        reviews: [
+          { customer: 'Ramesh', rating: 4, comment: 'Nice painting job.' },
+          { customer: 'Geeta', rating: 4.5, comment: 'Very neat and clean.' },
+        ],
+        location: { lat: 17.4200, lng: 78.3900 },
+        approved: true,
+      },
+      {
+        id: 'w6',
+        photo: 'https://placehold.co/150x150/png?text=Mason+Photo',
+        name: 'Manoj Kumar',
+        skill: 'mason',
+        phone: '+917659921055',
+        address: 'Village F, District X',
+        district: 'District X',
+        village: 'Village F',
+        rating: 4.6,
+        reviews: [
+          { customer: 'Anjali', rating: 5, comment: 'Strong and durable work.' },
+          { customer: 'Sanjay', rating: 4.2, comment: 'Good mason.' },
+        ],
+        location: { lat: 17.3900, lng: 78.4800 },
+        approved: true,
+      },
+      {
+        id: 'w7',
+        photo: 'https://placehold.co/150x150/png?text=Welder+Photo',
+        name: 'Vikram Singh',
+        skill: 'welder',
+        phone: '+917659921055',
+        address: 'Village G, District Z',
+        district: 'District Z',
+        village: 'Village G',
+        rating: 4.4,
+        reviews: [
+          { customer: 'Pooja', rating: 4, comment: 'Good welding work.' },
+          { customer: 'Deepak', rating: 4.8, comment: 'Highly skilled welder.' },
+        ],
+        location: { lat: 17.3100, lng: 78.6100 },
+        approved: true,
+      },
+      {
+        id: 'w8',
+        photo: 'https://placehold.co/150x150/png?text=Gardener+Photo',
+        name: 'Sunil Reddy',
+        skill: 'gardener',
+        phone: '+917659921055',
+        address: 'Village H, District Y',
+        district: 'District Y',
+        village: 'Village H',
+        rating: 4.1,
+        reviews: [
+          { customer: 'Kavita', rating: 4, comment: 'Lovely garden maintenance.' },
+          { customer: 'Raju', rating: 4.2, comment: 'Reliable gardener.' },
+        ],
+        location: { lat: 17.4300, lng: 78.4000 },
+        approved: true,
+      },
+      {
+        id: 'w9',
+        photo: 'https://placehold.co/150x150/png?text=Plumber+Photo',
+        name: 'Ajay Verma',
+        skill: 'plumber',
+        phone: '+917659921055',
+        address: 'Village I, District X',
+        district: 'District X',
+        village: 'Village I',
+        rating: 4.0,
+        reviews: [
+          { customer: 'Neelam', rating: 4, comment: 'Fixed leak quickly.' },
+          { customer: 'Harish', rating: 4, comment: 'Good service.' },
+        ],
+        location: { lat: 17.3700, lng: 78.4700 },
+        approved: true,
+      },
+      {
+        id: 'w10',
+        photo: 'https://placehold.co/150x150/png?text=Electrician+Photo',
+        name: 'Priya Singh',
+        skill: 'electrician',
+        phone: '+917659921055',
+        address: 'Village J, District Y',
+        district: 'District Y',
+        village: 'Village J',
+        rating: 4.9,
+        reviews: [
+          { customer: 'Rohit', rating: 5, comment: 'Excellent wiring job.' },
+          { customer: 'Sonal', rating: 4.8, comment: 'Very professional.' },
+        ],
+        location: { lat: 17.4400, lng: 78.3850 },
+        approved: true,
+      },
+      {
+        id: 'w11',
+        photo: 'https://placehold.co/150x150/png?text=Carpenter+Photo',
+        name: 'Kiran Das',
+        skill: 'carpenter',
+        phone: '+917659921055',
+        address: 'Village K, District X',
+        district: 'District X',
+        village: 'Village K',
+        rating: 4.3,
+        reviews: [
+          { customer: 'Maya', rating: 4, comment: 'Good furniture work.' },
+          { customer: 'Ajit', rating: 4.5, comment: 'Reliable and skilled.' },
+        ],
+        location: { lat: 17.4100, lng: 78.5100 },
+        approved: true,
+      },
+      {
+        id: 'w12',
+        photo: 'https://placehold.co/150x150/png?text=Builder+Photo',
+        name: 'Sanjay Kumar',
+        skill: 'builder',
+        phone: '+917659921055',
+        address: 'Village L, District Z',
+        district: 'District Z',
+        village: 'Village L',
+        rating: 4.6,
+        reviews: [
+          { customer: 'Sunil', rating: 5, comment: 'Great builder.' },
+          { customer: 'Vikas', rating: 4.5, comment: 'On time and budget.' },
+        ],
+        location: { lat: 17.3200, lng: 78.6200 },
+        approved: true,
+      },
+      {
+        id: 'w13',
+        photo: 'https://placehold.co/150x150/png?text=Painter+Photo',
+        name: 'Neha Sharma',
+        skill: 'painter',
+        phone: '+917659921055',
+        address: 'Village M, District Y',
+        district: 'District Y',
+        village: 'Village M',
+        rating: 4.4,
+        reviews: [
+          { customer: 'Ramesh', rating: 4, comment: 'Nice painting job.' },
+          { customer: 'Geeta', rating: 4.5, comment: 'Very neat and clean.' },
+        ],
+        location: { lat: 17.4250, lng: 78.3950 },
+        approved: true,
+      },
+      {
+        id: 'w14',
+        photo: 'https://placehold.co/150x150/png?text=Mason+Photo',
+        name: 'Rakesh Yadav',
+        skill: 'mason',
+        phone: '+917659921055',
+        address: 'Village N, District X',
+        district: 'District X',
+        village: 'Village N',
+        rating: 4.7,
+        reviews: [
+          { customer: 'Anjali', rating: 5, comment: 'Strong and durable work.' },
+          { customer: 'Sanjay', rating: 4.2, comment: 'Good mason.' },
+        ],
+        location: { lat: 17.3950, lng: 78.4850 },
+        approved: true,
+      },
+      {
+        id: 'w15',
+        photo: 'https://placehold.co/150x150/png?text=Welder+Photo',
+        name: 'Deepak Singh',
+        skill: 'welder',
+        phone: '+917659921055',
+        address: 'Village O, District Z',
+        district: 'District Z',
+        village: 'Village O',
+        rating: 4.5,
+        reviews: [
+          { customer: 'Pooja', rating: 4, comment: 'Good welding work.' },
+          { customer: 'Deepak', rating: 4.8, comment: 'Highly skilled welder.' },
+        ],
+        location: { lat: 17.3150, lng: 78.6150 },
+        approved: true,
+      },
+    ];
+
+    // Render workers list based on filters
+    const workersListEl = document.getElementById('workers-list');
+    const searchForm = document.getElementById('search-form');
+    const nearMeBtn = document.getElementById('near-me-btn');
+
+    function renderWorkerCard(worker) {
+      const avgRating = worker.rating.toFixed(1);
+      const stars = Array(5)
+        .fill(0)
+        .map((_, i) => {
+          if (worker.rating >= i + 1) return '<i class="fas fa-star text-yellow-400"></i>';
+          if (worker.rating > i && worker.rating < i + 1) return '<i class="fas fa-star-half-alt text-yellow-400"></i>';
+          return '<i class="far fa-star text-yellow-400"></i>';
+        })
+        .join('');
+      return `
+        <article class="bg-white rounded-lg shadow p-4 flex flex-col space-y-4 cursor-pointer hover:shadow-lg transition" data-worker-id="${worker.id}" tabindex="0" role="button" aria-label="View profile of ${worker.name}, ${worker.skill}">
+          <img src="${worker.photo}" alt="Profile photo of ${worker.name}, skilled ${worker.skill}" class="w-32 h-32 rounded-full mx-auto object-cover" />
+          <div class="text-center">
+            <h3 class="text-xl font-semibold text-indigo-700">${worker.name}</h3>
+            <p class="text-gray-600 capitalize">${worker.skill}</p>
+            <p class="text-gray-500 text-sm">${worker.address}</p>
+            <div class="flex justify-center items-center space-x-1 mt-1" aria-label="Rating: ${avgRating} out of 5 stars">
+              ${stars}
+              <span class="text-gray-700 font-semibold ml-2">${avgRating}</span>
+            </div>
+          </div>
+          <div class="flex justify-center space-x-4">
+            <a href="tel:${worker.phone}" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition flex items-center space-x-2" aria-label="Call ${worker.name}">
+              <i class="fas fa-phone-alt"></i><span>Call</span>
+            </a>
+            <a href="https://wa.me/${worker.phone.replace(/\D/g, '')}" target="_blank" rel="noopener" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition flex items-center space-x-2" aria-label="WhatsApp message to ${worker.name}">
+              <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
+            </a>
+          </div>
+        </article>
+      `;
+    }
+
+    function filterWorkers({ district, village, skill }) {
+      return workersData.filter(
+        (w) =>
+          w.approved &&
+          (!district || w.district.toLowerCase().includes(district.toLowerCase())) &&
+          (!village || w.village.toLowerCase().includes(village.toLowerCase())) &&
+          (!skill || w.skill === skill)
+      );
+    }
+
+    function renderWorkers(workers) {
+      if (workers.length === 0) {
+        workersListEl.innerHTML = `<p class="col-span-full text-center text-gray-500">No workers found matching your criteria.</p>`;
+        return;
+      }
+      workersListEl.innerHTML = workers.map(renderWorkerCard).join('');
+      attachWorkerCardListeners();
+    }
+
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const district = e.target['search-district'].value.trim();
+      const village = e.target['search-village'].value.trim();
+      const skill = e.target['search-skill'].value;
+      const filtered = filterWorkers({ district, village, skill });
+      renderWorkers(filtered);
+    });
+
+    // Near Me functionality using Geolocation and Google Maps Distance Matrix API (mocked)
+    nearMeBtn.addEventListener('click', () => {
+      if (!navigator.geolocation) {
+        alert('Geolocation is not supported by your browser.');
+        return;
+      }
+      nearMeBtn.disabled = true;
+      nearMeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Locating...';
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userLat = position.coords.latitude;
+          const userLng = position.coords.longitude;
+          // Filter workers within 20km radius (mock calculation)
+          const nearbyWorkers = workersData.filter((worker) => {
+            if (!worker.approved) return false;
+            const dist = getDistanceFromLatLonInKm(userLat, userLng, worker.location.lat, worker.location.lng);
+            return dist <= 20;
+          });
+          renderWorkers(nearbyWorkers);
+          nearMeBtn.disabled = false;
+          nearMeBtn.innerHTML = '<i class="fas fa-location-arrow"></i> Near Me';
+        },
+        () => {
+          alert('Unable to retrieve your location.');
+          nearMeBtn.disabled = false;
+          nearMeBtn.innerHTML = '<i class="fas fa-location-arrow"></i> Near Me';
+        }
+      );
+    });
+
+    // Haversine formula to calculate distance between two lat/lng points in km
+    function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+      const R = 6371; // Radius of the earth in km
+      const dLat = deg2rad(lat2 - lat1);
+      const dLon = deg2rad(lon2 - lon1);
+      const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      const d = R * c; // Distance in km
+      return d;
+    }
+    function deg2rad(deg) {
+      return deg * (Math.PI / 180);
+    }
+
+    // Initial render all approved workers
+    renderWorkers(workersData.filter((w) => w.approved));
+
+    // Worker Profile Modal Logic
+    const workerProfileModal = document.getElementById('worker-profile-modal');
+    const workerProfileContent = document.getElementById('worker-profile-content');
+    const workerProfileClose = document.getElementById('worker-profile-close');
+
+    function attachWorkerCardListeners() {
+      const cards = document.querySelectorAll('[data-worker-id]');
+      cards.forEach((card) => {
+        card.addEventListener('click', () => {
+          const workerId = card.getAttribute('data-worker-id');
+          openWorkerProfile(workerId);
+        });
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const workerId = card.getAttribute('data-worker-id');
+            openWorkerProfile(workerId);
+          }
+        });
+      });
+    }
+
+    function openWorkerProfile(workerId) {
+      const worker = workersData.find((w) => w.id === workerId);
+      if (!worker) return;
+      const avgRating = worker.rating.toFixed(1);
+      const stars = Array(5)
+        .fill(0)
+        .map((_, i) => {
+          if (worker.rating >= i + 1) return '<i class="fas fa-star text-yellow-400"></i>';
+          if (worker.rating > i && worker.rating < i + 1) return '<i class="fas fa-star-half-alt text-yellow-400"></i>';
+          return '<i class="far fa-star text-yellow-400"></i>';
+        })
+        .join('');
+      const reviewsHtml = worker.reviews
+        .map(
+          (r) => `
+        <div class="border-b border-gray-200 py-2 last:border-0">
+          <p class="font-semibold">${r.customer}</p>
+          <div class="flex items-center space-x-1 text-yellow-400">
+            ${Array(5)
+              .fill(0)
+              .map((_, i) => (r.rating > i ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>'))
+              .join('')}
+          </div>
+          <p class="text-gray-700">${r.comment}</p>
+        </div>
+      `
+        )
+        .join('');
+      workerProfileContent.innerHTML = `
+        <div class="flex flex-col items-center space-y-4">
+          <img src="${worker.photo}" alt="Profile photo of ${worker.name}, skilled ${worker.skill}" class="w-40 h-40 rounded-full object-cover" />
+          <h3 id="worker-profile-title" class="text-2xl font-semibold text-indigo-700">${worker.name}</h3>
+          <p class="text-gray-600 capitalize">${worker.skill}</p>
+          <p class="text-gray-500">${worker.address}</p>
+          <div class="flex justify-center items-center space-x-1 mt-1" aria-label="Rating: ${avgRating} out of 5 stars">
+            ${stars}
+            <span class="text-gray-700 font-semibold ml-2">${avgRating}</span>
+          </div>
+          <div class="flex space-x-4 mt-4">
+            <a href="tel:${worker.phone}" class="bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-700 transition flex items-center space-x-2" aria-label="Call ${worker.name}">
+              <i class="fas fa-phone-alt"></i><span>Call</span>
+            </a>
+            <a href="https://wa.me/${worker.phone.replace(/\D/g, '')}" target="_blank" rel="noopener" class="bg-green-500 text-white px-6 py-3 rounded-md hover:bg-green-600 transition flex items-center space-x-2" aria-label="WhatsApp message to ${worker.name}">
+              <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+        <section aria-labelledby="reviews-title" class="mt-8">
+          <h4 id="reviews-title" class="text-xl font-semibold text-indigo-700 mb-4">Customer Reviews</h4>
+          <div class="max-h-64 overflow-y-auto border border-gray-300 rounded-md p-4 bg-indigo-50">
+            ${reviewsHtml || '<p class="text-gray-500">No reviews yet.</p>'}
+          </div>
+          <form id="review-form" class="mt-6 space-y-4" aria-label="Submit a review for ${worker.name}">
+            <h5 class="text-lg font-semibold text-indigo-700">Rate & Review</h5>
+            <div>
+              <label for="review-rating" class="block text-sm font-medium text-gray-700">Rating</label>
+              <select id="review-rating" name="review-rating" required class="mt-1 block w-24 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <option value="">Select</option>
+                <option value="5">5 - Excellent</option>
+                <option value="4">4 - Good</option>
+                <option value="3">3 - Average</option>
+                <option value="2">2 - Poor</option>
+                <option value="1">1 - Bad</option>
+              </select>
+            </div>
+            <div>
+              <label for="review-comment" class="block text-sm font-medium text-gray-700">Comment</label>
+              <textarea id="review-comment" name="review-comment" rows="3" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 resize-none" placeholder="Write your review here..."></textarea>
+            </div>
+            <button type="submit" class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition">Submit Review</button>
+          </form>
+        </section>
+      `;
+      workerProfileModal.classList.remove('hidden');
+
+      // Review form submit handler
+      const reviewForm = document.getElementById('review-form');
+      reviewForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const rating = parseInt(reviewForm['review-rating'].value);
+        const comment = reviewForm['review-comment'].value.trim();
+        if (!rating || !comment) {
+          alert('Please provide both rating and comment.');
+          return;
+        }
+        // Mock adding review
+        worker.reviews.push({ customer: 'Anonymous', rating, comment });
+        worker.rating = (worker.rating * (worker.reviews.length - 1) + rating) / worker.reviews.length;
+        alert('Thank you for your review!');
+        openWorkerProfile(workerId); // Refresh modal content
+      });
+    }
+
+    workerProfileClose.addEventListener('click', () => {
+      workerProfileModal.classList.add('hidden');
+      workerProfileContent.innerHTML = '';
+    });
+
+    workerProfileModal.addEventListener('click', (e) => {
+      if (e.target === workerProfileModal) {
+        workerProfileModal.classList.add('hidden');
+        workerProfileContent.innerHTML = '';
+      }
+    });
+
+    // Job Request Form (Mocked)
+    const jobRequestForm = document.getElementById('job-request-form');
+    jobRequestForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const skill = e.target['job-skill'].value;
+      const district = e.target['job-district'].value.trim();
+      const village = e.target['job-village'].value.trim();
+      const description = e.target['job-description'].value.trim();
+      if (!skill || !district || !village || !description) {
+        alert('Please fill all required fields.');
+        return;
+      }
+      alert('Job request posted. Nearby workers will be notified (mock).');
+      jobRequestForm.reset();
+    });
+
+    // Admin Dashboard (Mocked Data)
+    const adminWorkersBySkillEl = document.getElementById('admin-workers-by-skill');
+    const adminWorkersByDistrictEl = document.getElementById('admin-workers-by-district');
+    const adminAnalyticsEl = document.getElementById('admin-analytics');
+    const adminPendingWorkersEl = document.getElementById('admin-pending-workers');
+    const adminReportedProfilesEl = document.getElementById('admin-reported-profiles');
+
+    // Mock pending workers (not approved)
+    const pendingWorkers = [
+      {
+        id: 'w16',
+        photo: 'https://placehold.co/150x150/png?text=Pending+Worker',
+        name: 'Pending Worker 1',
+        skill: 'plumber',
+        phone: '+917659921055',
+        address: 'Village P, District X',
+        district: 'District X',
+        village: 'Village P',
+      },
+      {
+        id: 'w17',
+        photo: 'https://placehold.co/150x150/png?text=Pending+Worker',
+        name: 'Pending Worker 2',
+        skill: 'electrician',
+        phone: '+917659921055',
+        address: 'Village Q, District Y',
+        district: 'District Y',
+        village: 'Village Q',
+      },
+    ];
+
+    // Mock reported profiles
+    const reportedProfiles = [
+      {
+        id: 'w3',
+        photo: 'https://placehold.co/150x150/png?text=Carpenter+Photo',
+        name: 'Suresh Patel',
+        skill: 'carpenter',
+        phone: '+917659921055',
+        address: 'Village C, District X',
+        district: 'District X',
+        village: 'Village C',
+        reports: 3,
+        lastReportReason: 'Unprofessional behavior',
+      },
+    ];
+
+    function updateAdminDashboard() {
+      // Workers by skill
+      const skillCounts = {};
+      workersData.forEach((w) => {
+        if (!w.approved) return;
+        skillCounts[w.skill] = (skillCounts[w.skill] || 0) + 1;
+      });
+      adminWorkersBySkillEl.innerHTML = `
+        <li>Plumber: ${skillCounts.plumber || 0}</li>
+        <li>Electrician: ${skillCounts.electrician || 0}</li>
+        <li>Carpenter: ${skillCounts.carpenter || 0}</li>
+        <li>Builder: ${skillCounts.builder || 0}</li>
+        <li>Painter: ${skillCounts.painter || 0}</li>
+        <li>Mason: ${skillCounts.mason || 0}</li>
+        <li>Welder: ${skillCounts.welder || 0}</li>
+        <li>Gardener: ${skillCounts.gardener || 0}</li>
+      `;
+
+      // Workers by district
+      const districtCounts = {};
+      workersData.forEach((w) => {
+        if (!w.approved) return;
+        districtCounts[w.district] = (districtCounts[w.district] || 0) + 1;
+      });
+      adminWorkersByDistrictEl.innerHTML = Object.entries(districtCounts)
+        .map(([district, count]) => `<li>${district}: ${count}</li>`)
+        .join('');
+
+      // Analytics (mocked)
+      adminAnalyticsEl.innerHTML = `
+        <li>Total Logins Today: 123</li>
+        <li>Most Searched Skill: Plumber</li>
+        <li>Active Districts: ${Object.keys(districtCounts).length}</li>
+      `;
+
+      // Pending workers
+      adminPendingWorkersEl.innerHTML = pendingWorkers
+        .map(
+          (w) => `
+        <div class="border border-gray-300 rounded-md p-4 flex items-center space-x-4">
+          <img src="${w.photo}" alt="Profile photo of pending worker ${w.name}" class="w-16 h-16 rounded-full object-cover" />
+          <div class="flex-grow">
+            <h4 class="text-lg font-semibold text-indigo-700">${w.name}</h4>
+            <p class="text-gray-600 capitalize">${w.skill}</p>
+            <p class="text-gray-500">${w.address}</p>
+          </div>
+          <div class="flex flex-col space-y-2">
+            <button data-worker-id="${w.id}" class="approve-worker-btn bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition">Approve</button>
+            <button data-worker-id="${w.id}" class="reject-worker-btn bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition">Reject</button>
+          </div>
+        </div>
+      `
+        )
+        .join('');
+
+      // Reported profiles
+      adminReportedProfilesEl.innerHTML = reportedProfiles
+        .map(
+          (r) => `
+        <div class="border border-gray-300 rounded-md p-4 flex items-center space-x-4">
+          <img src="${r.photo}" alt="Profile photo of reported worker ${r.name}" class="w-16 h-16 rounded-full object-cover" />
+          <div class="flex-grow">
+            <h4 class="text-lg font-semibold text-indigo-700">${r.name}</h4>
+            <p class="text-gray-600 capitalize">${r.skill}</p>
+            <p class="text-gray-500">${r.address}</p>
+            <p class="text-sm text-red-600 font-semibold">Reports: ${r.reports}</p>
+            <p class="text-sm text-gray-700 italic">Last report reason: ${r.lastReportReason}</p>
+          </div>
+          <div class="flex flex-col space-y-2">
+            <button data-worker-id="${r.id}" class="admin-action-btn bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition">Review</button>
+            <button data-worker-id="${r.id}" class="admin-action-btn bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition">Suspend</button>
+          </div>
+        </div>
+      `
+        )
+        .join('');
+
+      // Attach approve/reject handlers
+      document.querySelectorAll('.approve-worker-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-worker-id');
+          alert(`Worker ${id} approved (mock).`);
+          // Remove from pendingWorkers and add to workersData approved (mock)
+        });
+      });
+      document.querySelectorAll('.reject-worker-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-worker-id');
+          alert(`Worker ${id} rejected (mock).`);
+          // Remove from pendingWorkers (mock)
+        });
+      });
+      document.querySelectorAll('.admin-action-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-worker-id');
+          alert(`Admin action on worker ${id} (mock).`);
+        });
+      });
+    }
+
+    updateAdminDashboard();
+
+    // Chatbot Widget Logic (Simple mock)
+    const chatbotHeader = document.getElementById('chatbot-header');
+    const chatbotBody = document.getElementById('chatbot-body');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const chatbotForm = document.getElementById('chatbot-form');
+    const chatbotInput = document.getElementById('chatbot-input');
+
+    chatbotHeader.addEventListener('click', () => {
+      const expanded = chatbotHeader.getAttribute('aria-expanded') === 'true';
+      chatbotHeader.setAttribute('aria-expanded', !expanded);
+      chatbotBody.classList.toggle('hidden');
+      if (!expanded) {
+        chatbotInput.focus();
+      }
+    });
+
+    chatbotForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const userMsg = chatbotInput.value.trim();
+      if (!userMsg) return;
+      appendChatMessage('user', userMsg);
+      chatbotInput.value = '';
+      setTimeout(() => {
+        const botReply = generateBotReply(userMsg);
+        appendChatMessage('bot', botReply);
+      }, 1000);
+    });
+
+    function appendChatMessage(sender, message) {
+      const msgEl = document.createElement('div');
+      msgEl.className =
+        sender === 'user'
+          ? 'text-right text-white bg-indigo-600 rounded-lg px-4 py-2 max-w-xs ml-auto'
+          : 'text-left text-gray-800 bg-indigo-200 rounded-lg px-4 py-2 max-w-xs';
+      msgEl.textContent = message;
+      chatbotMessages.appendChild(msgEl);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function generateBotReply(message) {
+      const msg = message.toLowerCase();
+      if (msg.includes('hello') || msg.includes('hi')) return 'Hello! How can I assist you today?';
+      if (msg.includes('find worker') || msg.includes('search')) return 'You can use the search form above to find skilled workers by district, village, or skill.';
+      if (msg.includes('contact')) return 'Once you find a worker, you can call or WhatsApp them directly from their profile.';
+      if (msg.includes('job request')) return 'You can post a job request in the "Post a Job Request" section, and nearby workers will be notified.';
+      if (msg.includes('admin')) return 'Admin can manage workers and view analytics in the Admin Dashboard section.';
+      return "I'm sorry, I didn't understand that. Please try asking something else or use the search form.";
+    }
+  </script>
+ </body>
+</html>
